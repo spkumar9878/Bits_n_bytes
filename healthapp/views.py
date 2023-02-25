@@ -534,41 +534,41 @@ def add_genralhealth(request):
     return render(request,'add_genralhealth.html', {'alldisease':alldisease, 'predictiondata':predictiondata})
 
 
-def search_blood(request):
-    data = Blood_Donation.objects.filter(status="Approved")
-    if request.method == "POST":
-        bg = request.POST['bg']
-        place = request.POST['place']
-        user = Patient.objects.get(user=request.user)
-        Blood_Donation.objects.create(blood_group=bg, user=user, purpose="Request for Blood", status="Pending", place=place)
-        messages.success(request, "Request Generated.")
-        return redirect('search_blood')
-    return render(request, 'search_blood.html', {'data':data})
+# def search_blood(request):
+#     data = Blood_Donation.objects.filter(status="Approved")
+#     if request.method == "POST":
+#         bg = request.POST['bg']
+#         place = request.POST['place']
+#         user = Patient.objects.get(user=request.user)
+#         Blood_Donation.objects.create(blood_group=bg, user=user, purpose="Request for Blood", status="Pending", place=place)
+#         messages.success(request, "Request Generated.")
+#         return redirect('search_blood')
+#     return render(request, 'search_blood.html', {'data':data})
 
 
-def donate_blood(request):
-    if request.method == "POST":
-        bg = request.POST['bg']
-        place = request.POST['place']
-        user = Patient.objects.get(user=request.user)
-        data = Blood_Donation.objects.create(blood_group=bg, user=user, purpose="Blood Donor", status="Pending", place=place)
-        messages.success(request, "Added Your Detail.")
-        return redirect('donate_blood')
-    return render(request, 'donate_blood.html')
+# def donate_blood(request):
+#     if request.method == "POST":
+#         bg = request.POST['bg']
+#         place = request.POST['place']
+#         user = Patient.objects.get(user=request.user)
+#         data = Blood_Donation.objects.create(blood_group=bg, user=user, purpose="Blood Donor", status="Pending", place=place)
+#         messages.success(request, "Added Your Detail.")
+#         return redirect('donate_blood')
+#     return render(request, 'donate_blood.html')
 
-def request_blood(request):
-    mydata = request.GET.get('action',0)
-    data = Blood_Donation.objects.filter(purpose="Request for Blood")
-    if mydata:
-        data = data.filter(status=mydata)
-    return render(request, 'request_blood.html', {'data':data})
+# def request_blood(request):
+#     mydata = request.GET.get('action',0)
+#     data = Blood_Donation.objects.filter(purpose="Request for Blood")
+#     if mydata:
+#         data = data.filter(status=mydata)
+#     return render(request, 'request_blood.html', {'data':data})
 
-def donator_blood(request):
-    mydata = request.GET.get('action',0)
-    data = Blood_Donation.objects.filter(purpose="Blood Donor")
-    if mydata:
-        data = data.filter(status=mydata)
-    return render(request, 'donator_blood.html', {'data':data})
+# def donator_blood(request):
+#     mydata = request.GET.get('action',0)
+#     data = Blood_Donation.objects.filter(purpose="Blood Donor")
+#     if mydata:
+#         data = data.filter(status=mydata)
+#     return render(request, 'donator_blood.html', {'data':data})
 
 def change_status(request,pid):
     data = Blood_Donation.objects.get(id=pid)
