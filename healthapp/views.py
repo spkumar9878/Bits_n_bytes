@@ -128,6 +128,12 @@ def Login_admin(request):
     d = {'error': error}
     return render(request, 'admin_login.html', d)
 
+def Appointment(request):
+    c =""
+    if request.method=="POST":
+        if request.POST.get('num1')=="":
+            return render(request, "carousel.html",{'error':True})
+
 def Signup_User(request):
     error = ""
     if request.method == 'POST':
